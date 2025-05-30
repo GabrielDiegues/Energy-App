@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Input from '../Components/Input';
 import { useEventContext } from '../Navigation/Context/EventContext';
 import { Location } from '../Types/Index';
+import RenderList from '../Components/Events/RenderList';
 
 // Types
 type LocationFields = {
@@ -51,12 +52,6 @@ const AffectedLocations = () => {
 
     const createLocation = (formValue: LocationFields) => {
         const id: number = Number(formValue.eventId);
-        const newLocation: Location = {
-            eventId: id,
-            neighborhood: formValue.neighborhood,
-            city: formValue.city,
-            cep: formValue.cep,
-        };
 
 
         const hasEmptyField = Object.values(formValue).some(value => value.trim() === '');
@@ -65,10 +60,21 @@ const AffectedLocations = () => {
         }
         else if(events.some(event => event.id === id)) {
             setEvents(prev => {
+                const newLocation: Location = {
+                    id: (prev[id - 1].locations.length + 1),
+                    eventId: id,
+                    neighborhood: formValue.neighborhood,
+                    city: formValue.city,
+                    cep: formValue.cep,
+                };
+
+
                 const updatedEvent = {
                     ...prev[id - 1],
                     locations:[...prev[id - 1].locations, newLocation],
                 };
+
+
                 const newEvents = [...prev];
                 newEvents[id - 1] = updatedEvent;
                 screenAlert('Data Registered', 'Affected location registered with success');
@@ -120,7 +126,14 @@ const AffectedLocations = () => {
 
             <FlatList
                 data={events}
-                
+                renderItem={({item}) =>
+                    <RenderList
+                        event={item}
+                        showId={true}
+                        showLocations={true}
+                        showName={true}
+                    />}
+                keyExtractor={(item) => item.id.toString()}
             />
         </View>
     );
@@ -136,6 +149,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 30,
         marginRight: 30,
+        marginBottom: 50,
     },
 });
 

@@ -1,4 +1,5 @@
 type Location = {
+    id: number;
     eventId: number;
     neighborhood: string;
     city: string;

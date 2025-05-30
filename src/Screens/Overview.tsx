@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import ListEvents from '../Components/Events/ListEvents';
+import RenderList from '../Components/Events/RenderList';
 import { UserEvent } from '../Types/Index';
 import { useEventContext } from '../Navigation/Context/EventContext';
 
@@ -30,7 +30,15 @@ const Overview = () => {
             </TouchableOpacity>
             }
             data={events}
-            renderItem={({item}) => <ListEvents event={item}/>}
+            renderItem={({item}) =>
+            <RenderList
+                event={item}
+                showId={true}
+                showName={true}
+                showDate={true}
+                showLocations={true}
+                showDamages={true}
+            />}
             keyExtractor={(item) => item.id.toString()}
         />
     );
