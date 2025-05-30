@@ -1,46 +1,62 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import RenderList from '../Components/Events/RenderList';
 import { UserEvent } from '../Types/Index';
 import { useEventContext } from '../Navigation/Context/EventContext';
+import Input from '../Components/Input';
+import { useState } from 'react';
+import screenAlert from '../Utils/DisplayMessages';
 
 const Overview = () => {
     const {events, setEvents} = useEventContext();
+    const [userInput, setUserInput] = useState<string>('');
 
 
-    // Functions
+    // Functions inside the component
     const createEvent = () => {
-        const newEvent: UserEvent = {
-            id: (events.length + 1),
-            name: '',
-            date: '',
-            locations: [],
-            duration: '',
-            damages: [],
-        };
-
-        setEvents(prevEvents => [...prevEvents, newEvent]);
+        if(userInput) {
+            const newEvent: UserEvent = {
+                id: (events.length + 1),
+                name: userInput,
+                date: '',
+                locations: [],
+                duration: '',
+                damages: [],
+            };
+            setEvents(prevEvents => [...prevEvents, newEvent]);
+        }
+        else {
+            screenAlert('Error', 'Please, type a description');
+        }
     };
 
 
     return (
-        <FlatList
-            ListHeaderComponent={
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => createEvent()}>
-                <Text>Create new event</Text>
-            </TouchableOpacity>
-            }
-            data={events}
-            renderItem={({item}) =>
-            <RenderList
-                event={item}
-                showId={true}
-                showName={true}
-                showDate={true}
-                showLocations={true}
-                showDamages={true}
-            />}
-            keyExtractor={(item) => item.id.toString()}
-        />
+        <View>
+            <Input
+                msg="Event's description"
+                userInput={userInput}
+                onChangeText={setUserInput}
+            />
+
+            <FlatList
+                ListHeaderComponent={
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => createEvent()}>
+                    <Text>Create new event</Text>
+                </TouchableOpacity>
+                }
+                data={events}
+                renderItem={({item}) =>
+                <RenderList
+                    event={item}
+                    showId={true}
+                    showName={true}
+                    showDate={true}
+                    showLocations={true}
+                    showDamages={true}
+                />}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </View>
     );
 };
 

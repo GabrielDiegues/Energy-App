@@ -25,7 +25,8 @@ const RenderList = ({event, showId, showName, showDate, showLocations, showDamag
             {showName && <Text>Description: {event.name.trim() ? event.name : 'undefined'}</Text>}
             {showDate && <Text>Date: {event.date.trim() ? event.date : 'undefined'}</Text>}
             {showLocations && <Text>Locations: {event.locations.length ? renderLocations(event.locations) : 'undefined'}</Text>}
-            {showDamages && <Text>Damages: {event.damages.length ? event.damages : 'undefined'} {'\n'}</Text>}
+            {showDamages && <Text>Damages: {event.damages.length ? event.damages : 'undefined'}</Text>}
+            <Text />
         </View>
     );
 };

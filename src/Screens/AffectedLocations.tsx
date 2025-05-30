@@ -1,9 +1,10 @@
-import { Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import Input from '../Components/Input';
 import { useEventContext } from '../Navigation/Context/EventContext';
 import { Location } from '../Types/Index';
 import RenderList from '../Components/Events/RenderList';
+import screenAlert from '../Utils/DisplayMessages';
 
 // Types
 type LocationFields = {
@@ -17,18 +18,6 @@ type LocationFields = {
 // Functions outside the component
 const isNumber = (str: string): boolean => {
     return !isNaN(Number(str.trim()));
-};
-
-
-const screenAlert = (title: string, description: string) => {
-    Alert.alert(
-        `${title}`,
-        `${description}`,
-        [
-            {text: 'close'},
-        ],
-        {cancelable: true}
-    );
 };
 
 
