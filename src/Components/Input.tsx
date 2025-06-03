@@ -1,4 +1,5 @@
-import { StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
+import styles from '../Styles/GlobalStyles';
 
 type InputProps = {
     msg: string;
@@ -17,12 +18,4 @@ const Input = ({msg, userInput, onChangeText}: InputProps) => {
     );
 };
 
-
-const styles = StyleSheet.create({
-    input: {
-        fontSize: 13,
-        borderWidth: 1,
-        marginTop: 35,
-    },
-});
 export default Input;
