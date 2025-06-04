@@ -5,14 +5,17 @@ import { UserEvent } from '../../Types/Index';
 const test: UserEvent = {
     id: 1,
     name: 'Accident',
-    date: '12/01/2004',
     locations: [{
+        id: 1,
         eventId: 1,
         neighborhood: 'Vila Cruzeiro',
         city: 'Sao Paulo',
         cep: '04726160',
+        outageDuration: {
+            date: '12/01/2004',
+            duration: '1:00',
+        },
     }],
-    duration: '1:00',
     damages: ['Car crash'],
 };
 

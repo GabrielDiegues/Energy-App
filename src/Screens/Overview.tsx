@@ -17,9 +17,7 @@ const Overview = () => {
             const newEvent: UserEvent = {
                 id: (events.length + 1),
                 name: userInput,
-                date: '',
                 locations: [],
-                duration: '',
                 damages: [],
             };
             setEvents(prevEvents => [...prevEvents, newEvent]);
@@ -50,7 +48,6 @@ const Overview = () => {
                     event={item}
                     showId={true}
                     showName={true}
-                    showDate={true}
                     showLocations={true}
                     showDamages={true}
                 />}

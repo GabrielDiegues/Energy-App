@@ -2,7 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeTabParamList } from '../Types/Navigation';
 import Overview from '../Screens/Overview';
 import AffectedLocations from '../Screens/AffectedLocations';
-import OutageDuration from '../Screens/OutageDuration';
+import Outage from '../Screens/Outage';
+import Damages from '../Screens/Damages';
 
 const Tabs = createBottomTabNavigator<HomeTabParamList>();
 
@@ -20,8 +21,13 @@ const Home = () => {
             />
 
             <Tabs.Screen
-                name="OutageDuration"
-                component={OutageDuration}
+                name="Outage"
+                component={Outage}
+            />
+
+            <Tabs.Screen
+                name="Damages"
+                component={Damages}
             />
         </Tabs.Navigator>
     );

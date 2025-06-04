@@ -12,6 +12,17 @@ const styles = StyleSheet.create({
         marginLeft:10,
         fontWeight: 'bold',
     },
+
+    buttonContainer: {
+        alignItems: 'center',
+        borderWidth: 2,
+        borderRadius: 8,
+        padding: 10,
+        marginTop: 30,
+        marginBottom: 50,
+        marginLeft: 50,
+        marginRight: 50,
+    },
 });
 
 export default styles;

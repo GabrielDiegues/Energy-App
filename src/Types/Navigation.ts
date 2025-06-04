@@ -1,7 +1,7 @@
 type HomeTabParamList = {
     Overview: undefined;
     AffectedLocations: undefined;
-    OutageDuration: undefined;
+    Outage: undefined;
     Damages: undefined;
     Recommendations: undefined;
 };
